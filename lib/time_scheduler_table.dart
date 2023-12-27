@@ -1,7 +1,7 @@
 library time_scheduler_table;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:time_scheduler_table/src/time_scheduler_table.dart';
+export 'package:time_scheduler_table/src/model/event_alert.dart';
+export 'package:time_scheduler_table/src/model/event_model.dart';
+export 'package:time_scheduler_table/src/widget/color_circle.dart';
+export 'package:time_scheduler_table/src/widget/scheduler_alert.dart';
