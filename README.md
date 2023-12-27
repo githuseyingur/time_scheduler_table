@@ -18,7 +18,7 @@ Define a TextEditingController for event add and event update alerts:
 ```dart
 TextEditingController textController = TextEditingController();
 ```
-Create a list of event models with title, day index, time and color. <br> The day index, specifies the index of the elements in the top titles (Mon, Tue or Day1, Day2). It starts from 0.
+Create a list of event models with title, day index, time and color. <br> The day index, specifies the index of the elements in the top titles (Mon, Tue or Day1, Day2). It starts from 0:
 ```dart
 List<EventModel> eventList = [
   EventModel(title: "Math", dayIndex: 0, time: "08:00 - 09:00", color: Colors.orange), // time format :  08:00 - 09:00
@@ -28,6 +28,7 @@ List<EventModel> eventList = [
   EventModel(title: "Guitar and Piano Course", dayIndex: 2, time: "15:00 - 16:00", color: Colors.blue)
 ];
 ```
+Create your Time Scheduler Widget:
 ```dart
 TimeSchedulerTable(
   cellHeight: 48,
