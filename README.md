@@ -28,7 +28,8 @@ List<EventModel> eventList = [
   EventModel(title: "Guitar and Piano Course", dayIndex: 2, time: "15:00 - 16:00", color: Colors.blue)
 ];
 ```
-Create your Time Scheduler Widget:
+Create your Time Scheduler Widget: <br>
+topTitles contain days or values that you define. The default value is : ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
 ```dart
 TimeSchedulerTable(
   cellHeight: 48,
