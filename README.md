@@ -34,8 +34,8 @@ topTitles contain days or values that you define. The default value is : ["Mon",
 TimeSchedulerTable(
   cellHeight: 48,
   cellWidth: 64,
-  // topTitles: const ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],      --> topTitles is growable : you can add as much as you want
-  // currentTitleIndex: DateTime.now().weekday - 1,
+  topTitles: const ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],      // topTitles is growable : you can add as much as you want
+  currentTitleIndex: DateTime.now().weekday - 1,
   // topTitles: const ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],
   // currentTitleIndex: 2,      --> if currentTitleIndex is 2 then selected day is 3.
   title: "Event Schedule",
