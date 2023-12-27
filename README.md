@@ -9,8 +9,9 @@ A nice time planner for Android & IOS where you can create events by clicking on
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```dart
+flutter pub add time_scheduler_table
+```
 
 ## Usage
 
