@@ -3,7 +3,11 @@ A nice time planner for Android & IOS where you can create events by clicking on
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+
+
+https://github.com/githuseyingur/time_scheduler_table/assets/120099096/32009223-ab13-4b49-a224-d547212adaab
+
+
 
 ## Getting started
 
