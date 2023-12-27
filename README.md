@@ -2,10 +2,12 @@
 A nice time planner for Android & IOS where you can create events by clicking on cells, edit (update) and delete the events you have created. You can assign colours to events and if the name of the event is too long, you can see the full name and description by long pressing on the event.
 
 ## Features
-
-
-
-
+<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/b3c72c90-512e-40b5-a98a-cb5cebc5e768"  width="320">
+<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/ba9214b2-9efc-477c-8e79-2a9beea7e1f6"  width="320">
+<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/8179e42e-a57e-42f8-aed2-693998af9692"  width="320">
+<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/b56ee7c6-bfb9-4b25-9097-08a7239edc7d"  width="320">
+<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/27177563-81d0-49ca-9765-87b52c39a8bd"  width="280" height ="580">
+<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/c909575d-4292-45e3-95e0-ecf59cd92092"  width="280" height ="580">
 
 ## Getting started
 
@@ -71,8 +73,4 @@ topTitles: const ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
 currentTitleIndex: 2,
 ```
 If you define like this, the topTitles contain numbers from 1 to 14. And selected day is 3 if currentTitleIndex is 2.
-## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
