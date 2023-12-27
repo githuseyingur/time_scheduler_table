@@ -2,6 +2,7 @@
 A nice time planner for Android & IOS where you can create events by clicking on cells, edit (update) and delete the events you have created. You can assign colours to events and if the name of the event is too long, you can see the full name and description by long pressing on the event.
 
 ## Features
+
 ```dart
 TextEditingController textController = TextEditingController();
 
