@@ -14,10 +14,11 @@ flutter pub add time_scheduler_table
 ```
 
 ## Usage
-
+Define a TextEditingController for event add and event update alerts:
 ```dart
 TextEditingController textController = TextEditingController();
-
+```
+```dart
 List<EventModel> eventList = [
   EventModel(title: "Math", dayIndex: 0, time: "08:00 - 09:00", color: Colors.orange), // time format :  08:00 - 09:00
   EventModel(title: "History", dayIndex: 1, time: "11:00 - 12:00", color: Colors.pink), // dayIndex is topTitle's index (Monday : 0  or  Day1 : 0)
