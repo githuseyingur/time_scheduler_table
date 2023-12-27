@@ -29,7 +29,7 @@ List<EventModel> eventList = [
 ];
 ```
 Create your Time Scheduler Widget: <br>
-<u>topTitles<u> contain days or values that you define. It is not required. <br> The default value is : ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
+<u>topTitles</u> contain days or values that you define. It is not required. <br> The default value is : ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
 ```dart
 TimeSchedulerTable(
   cellHeight: 48,
