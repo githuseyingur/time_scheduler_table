@@ -10,16 +10,13 @@ class SchedulerAlert extends StatefulWidget {
   int y;
   bool isAdd;
   BorderRadiusGeometry? borderRadius;
-
   String? addButtonTitle;
   String? deleteButtonTitle;
   String? updateButtonTitle;
   Function()? deleteOnPressed;
   Function()? addOnPressed;
   Function()? updateOnPressed;
-
   Widget colorWidget;
-
   Color? selectedColor;
 
   SchedulerAlert(
