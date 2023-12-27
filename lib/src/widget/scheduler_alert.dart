@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 
 class SchedulerAlert extends StatefulWidget {
-  GlobalKey<FormState> formKey;
-  TextEditingController textController;
-  String? alertTitle;
-  String? hintText;
-  String? textFieldEmptyMessage;
-  int x;
-  int y;
-  bool isAdd;
-  BorderRadiusGeometry? borderRadius;
-  String? addButtonTitle;
-  String? deleteButtonTitle;
-  String? updateButtonTitle;
-  Function()? deleteOnPressed;
-  Function()? addOnPressed;
-  Function()? updateOnPressed;
-  Widget colorWidget;
-  Color? selectedColor;
+  final GlobalKey<FormState> formKey;
+  final TextEditingController textController;
+  final String? alertTitle;
+  final String? hintText;
+  final String? textFieldEmptyMessage;
+  final int x;
+  final int y;
+  final bool isAdd;
+  final BorderRadiusGeometry? borderRadius;
+  final String? addButtonTitle;
+  final String? deleteButtonTitle;
+  final String? updateButtonTitle;
+  final Function()? deleteOnPressed;
+  final Function()? addOnPressed;
+  final Function()? updateOnPressed;
+  final Widget colorWidget;
+  final Color? selectedColor;
 
-  SchedulerAlert(
+  const SchedulerAlert(
       {super.key,
       required this.formKey,
       required this.textController,

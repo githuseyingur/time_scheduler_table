@@ -5,27 +5,8 @@ import 'package:time_scheduler_table/src/model/event_model.dart';
 import 'package:time_scheduler_table/src/widget/color_circle.dart';
 import 'package:time_scheduler_table/src/widget/scheduler_alert.dart';
 
+// ignore: must_be_immutable
 class TimeSchedulerTable extends StatefulWidget {
-  String? title;
-  TextStyle? titleStyle;
-  TextStyle? eventTitleStyle;
-  bool isBack;
-  int? currentTitleIndex;
-  List<EventModel> eventList;
-  double cellHeight;
-  double cellWidth;
-  DateTime selectedDate = DateTime.now();
-  ScrollController mainHorizontalController = ScrollController();
-  ScrollController mainVerticalController = ScrollController();
-  ScrollController dayHorizontalController = ScrollController();
-  ScrollController timeVerticalController = ScrollController();
-  List<int> x = [];
-  List<int> y = [];
-  List<String> indexList = [];
-  List<String>? topTitles;
-  final formKey = GlobalKey<FormState>();
-  EventAlert eventAlert;
-
   TimeSchedulerTable(
       {super.key,
       this.title,
@@ -38,6 +19,26 @@ class TimeSchedulerTable extends StatefulWidget {
       required this.cellHeight,
       required this.cellWidth,
       required this.eventAlert});
+  final String? title;
+  final TextStyle? titleStyle;
+  final TextStyle? eventTitleStyle;
+  final bool isBack;
+  final int? currentTitleIndex;
+  final List<EventModel> eventList;
+  final double cellHeight;
+  final double cellWidth;
+  final selectedDate = DateTime.now();
+  final ScrollController mainHorizontalController = ScrollController();
+  final ScrollController mainVerticalController = ScrollController();
+  final ScrollController dayHorizontalController = ScrollController();
+  final ScrollController timeVerticalController = ScrollController();
+  final List<int> x = [];
+  final List<int> y = [];
+  final List<String> indexList = [];
+  List<String>? topTitles;
+  final formKey = GlobalKey<FormState>();
+  final EventAlert eventAlert;
+
   @override
   State<TimeSchedulerTable> createState() => _TimeSchedulerTableState();
 }
@@ -45,17 +46,15 @@ class TimeSchedulerTable extends StatefulWidget {
 class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
   @override
   Widget build(BuildContext context) {
-    if (widget.topTitles == null) {
-      widget.topTitles = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
-    }
+    List<String>? topTitles = widget.topTitles ?? ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
 
-    List<Widget> headers = List.generate(widget.topTitles!.length, (index) {
+    List<Widget> headers = List.generate(topTitles.length, (index) {
       return SizedBox(
         height: 32,
         width: widget.cellWidth,
         child: Center(
           child: Text(
-            widget.topTitles![index],
+            topTitles[index],
             style: TextStyle(
                 fontWeight: FontWeight.w800,
                 fontSize: 10,
@@ -143,7 +142,6 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
     widget.mainVerticalController.addListener(() {
       widget.timeVerticalController.jumpTo(widget.mainVerticalController.offset);
     });
-    int index = widget.eventList.length;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[50],
@@ -209,7 +207,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                           const SizedBox(
                             width: 84 + 1.6,
                           ),
-                          for (int i = 0; i < widget.topTitles!.length; i++) headers[i],
+                          for (int i = 0; i < topTitles.length; i++) headers[i],
                         ],
                       ),
                     ),
@@ -288,7 +286,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                           children: <Widget>[
                                             SizedBox(
                                               height: (18 * widget.cellHeight) + (18 * 1.6),
-                                              width: (widget.topTitles!.length * widget.cellWidth),
+                                              width: (topTitles.length * widget.cellWidth),
                                               child: Stack(
                                                 children: <Widget>[
                                                   Column(
@@ -299,7 +297,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                           mainAxisSize: MainAxisSize.min,
                                                           children: <Widget>[
                                                             Row(children: [
-                                                              for (int j = 0; j < widget.topTitles!.length; j++)
+                                                              for (int j = 0; j < topTitles.length; j++)
                                                                 GestureDetector(
                                                                   onTap: () {
                                                                     widget.eventAlert.alertTextController.text = "";
@@ -696,7 +694,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                   Row(
                                                     mainAxisSize: MainAxisSize.min,
                                                     children: <Widget>[
-                                                      for (var i = 0; i < widget.topTitles!.length; i++)
+                                                      for (var i = 0; i < topTitles.length; i++)
                                                         Row(
                                                           mainAxisSize: MainAxisSize.min,
                                                           children: <Widget>[
@@ -739,7 +737,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
   }
 }
 
-String? getLessonTime(int i) {
+String getLessonTime(int i) {
   switch (i) {
     case 0:
       return "06:00 - 07:00";
@@ -777,5 +775,7 @@ String? getLessonTime(int i) {
       return "22:00 - 23:00";
     case 17:
       return "23:00 - 24:00";
+    default:
+      return "00:00 - 00:00";
   }
 }

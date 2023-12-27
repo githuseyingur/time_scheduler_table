@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ColorCircle extends StatelessWidget {
-  ColorCircle({
+  const ColorCircle({
     super.key,
     required this.color,
     required this.onTap,
     required this.isSelected,
     required this.size,
   });
-  Color color;
-  Function() onTap;
-  bool isSelected;
-  double size;
+  final Color color;
+  final Function() onTap;
+  final bool isSelected;
+  final double size;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
