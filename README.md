@@ -61,7 +61,7 @@ TimeSchedulerTable(
   ),
 ),
 ```
-<u> topTitles </u> contain days or values that you define. It is not required. <br> The default value is : 
+<ins>topTitles</ins> contain days or values that you define. It is not required. <br> The default value is : 
 ```dart
 ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
 ```
