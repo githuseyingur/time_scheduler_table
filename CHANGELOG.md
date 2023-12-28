@@ -4,4 +4,4 @@
 
 ## 0.0.2
 
-* Fixed version solved failed.
+* Fixed version solved issue.
