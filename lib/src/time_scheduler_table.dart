@@ -8,7 +8,8 @@ import 'package:time_scheduler_table/src/widget/scheduler_alert.dart';
 // ignore: must_be_immutable
 class TimeSchedulerTable extends StatefulWidget {
   TimeSchedulerTable(
-      {this.title,
+      {super.key,
+      this.title,
       this.titleStyle,
       this.eventTitleStyle,
       this.isBack = true,
