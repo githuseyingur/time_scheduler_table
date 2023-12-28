@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ColorCircle extends StatelessWidget {
   const ColorCircle({
-    super.key,
     required this.color,
     required this.onTap,
     required this.isSelected,

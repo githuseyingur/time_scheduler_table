@@ -20,8 +20,7 @@ class SchedulerAlert extends StatefulWidget {
   final Color? selectedColor;
 
   const SchedulerAlert(
-      {super.key,
-      required this.formKey,
+      {required this.formKey,
       required this.textController,
       this.alertTitle,
       this.hintText,
