@@ -10,13 +10,17 @@ class EventModel {
   //// [color] is color of event.
   Color? color;
 
-  /// [dayIndex] indicates in which column index the Event is located.
-  int dayIndex;
+  /// [columnIndex] indicates in which column index the Event is located.
+  int columnIndex;
+
+  /// [rowIndex] indicates in which row index the Event is located.
+  int rowIndex;
 
   EventModel({
     this.title,
     this.time,
     this.color,
-    required this.dayIndex,
+    required this.columnIndex,
+    required this.rowIndex,
   });
 }

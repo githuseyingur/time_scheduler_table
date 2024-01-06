@@ -13,8 +13,9 @@ class TimeSchedulerTable extends StatefulWidget {
       this.titleStyle,
       this.eventTitleStyle,
       this.isBack = true,
-      this.currentTitleIndex,
-      this.topTitles,
+      this.currentColumnTitleIndex,
+      this.columnTitles,
+      this.rowTitles,
       required this.eventList,
       required this.cellHeight,
       required this.cellWidth,
@@ -32,8 +33,8 @@ class TimeSchedulerTable extends StatefulWidget {
   /// [isBack] is the button in the table that allows to go back. Default value is true.
   final bool isBack;
 
-  /// [currentTitleIndex] is the index indicating the currently selected column.
-  final int? currentTitleIndex;
+  /// [currentColumnTitleIndex] is the index indicating the currently selected column.
+  final int? currentColumnTitleIndex;
 
   /// [eventList] is the list of [EventModel] containing events.
   final List<EventModel> eventList;
@@ -44,7 +45,7 @@ class TimeSchedulerTable extends StatefulWidget {
   /// [cellWidth] is the width of cells in table.
   final double cellWidth;
 
-  /// [selectedDate] is used to specify the selected column if [currentTitleIndex] is not given.
+  /// [selectedDate] is used to specify the selected column if [currentColumnTitleIndex] is not given.
   final selectedDate = DateTime.now();
 
   final ScrollController mainHorizontalController = ScrollController();
@@ -61,13 +62,16 @@ class TimeSchedulerTable extends StatefulWidget {
   /// [indexList] is string list of (x+y)
   final List<String> indexList = [];
 
-  /// [topTitles] is list of column names.
-  List<String>? topTitles;
+  /// [columnTitles] is list of column names.
+  List<String>? columnTitles;
+
+  /// [rowTitles] is list of row names.
+  List<String>? rowTitles;
 
   /// [formKey] is key of TextFormField in [EventAlert]
   final formKey = GlobalKey<FormState>();
 
-  /// [EventAlert] is is the class containing all the properties of the alert.
+  /// [EventAlert] is the class containing all the properties of the alert.
   final EventAlert eventAlert;
 
   @override
@@ -77,22 +81,44 @@ class TimeSchedulerTable extends StatefulWidget {
 class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
   @override
   Widget build(BuildContext context) {
-    // topTitles are table column names.
-    List<String>? topTitles =
-        widget.topTitles ?? ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+    // columnTitles are table column names.
+    List<String>? columnTitles = widget.columnTitles ??
+        ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+    List<String>? rowTitles = widget.rowTitles ??
+        [
+          '06:00 - 07:00',
+          '07:00 - 08:00',
+          '08:00 - 09:00',
+          '09:00 - 10:00',
+          '10:00 - 11:00',
+          '11:00 - 12:00',
+          '12:00 - 13:00',
+          '13:00 - 14:00',
+          '14:00 - 15:00',
+          '15:00 - 16:00',
+          '16:00 - 17:00',
+          '17:00 - 18:00',
+          '18:00 - 19:00',
+          '19:00 - 20:00',
+          '20:00 - 21:00',
+          '21:00 - 22:00',
+          '22:00 - 23:00',
+          '23:00 - 24:00'
+        ];
+
     // headers is a widget list containing table column names.
-    List<Widget> headers = List.generate(topTitles.length, (index) {
+    List<Widget> headers = List.generate(columnTitles.length, (index) {
       return SizedBox(
         height: 32,
         width: widget.cellWidth,
         child: Center(
           child: Text(
-            topTitles[index],
+            columnTitles[index],
             style: TextStyle(
                 fontWeight: FontWeight.w800,
                 fontSize: 10,
-                color: widget.currentTitleIndex != null
-                    ? widget.currentTitleIndex == index
+                color: widget.currentColumnTitleIndex != null
+                    ? widget.currentColumnTitleIndex == index
                         ? Colors.blue
                         : Colors.grey[400]
                     : widget.selectedDate.weekday == index + 1
@@ -103,71 +129,13 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
       );
     });
 
-    // widget.x is a topTile List
     widget.x.clear();
-
-    // widget.y is a time List
     widget.y.clear();
-
     widget.indexList.clear();
+
     for (var element in widget.eventList) {
-      widget.x.add(element.dayIndex);
-      switch (element.time) {
-        case "06:00 - 07:00":
-          widget.y.add(0);
-          break;
-        case "07:00 - 08:00":
-          widget.y.add(1);
-          break;
-        case "08:00 - 09:00":
-          widget.y.add(2);
-          break;
-        case "09:00 - 10:00":
-          widget.y.add(3);
-          break;
-        case "10:00 - 11:00":
-          widget.y.add(4);
-          break;
-        case "11:00 - 12:00":
-          widget.y.add(5);
-          break;
-        case "12:00 - 13:00":
-          widget.y.add(6);
-          break;
-        case "13:00 - 14:00":
-          widget.y.add(7);
-          break;
-        case "14:00 - 15:00":
-          widget.y.add(8);
-          break;
-        case "15:00 - 16:00":
-          widget.y.add(9);
-          break;
-        case "16:00 - 17:00":
-          widget.y.add(10);
-          break;
-        case "17:00 - 18:00":
-          widget.y.add(11);
-          break;
-        case "18:00 - 19:00":
-          widget.y.add(12);
-          break;
-        case "19:00 - 20:00":
-          widget.y.add(13);
-          break;
-        case "20:00 - 21:00":
-          widget.y.add(14);
-          break;
-        case "21:00 - 22:00":
-          widget.y.add(15);
-          break;
-        case "22:00 - 23:00":
-          widget.y.add(16);
-          break;
-        case "23:00 - 24:00":
-          widget.y.add(17);
-          break;
-      }
+      widget.x.add(element.columnIndex);
+      widget.y.add(element.rowIndex);
     }
     for (int i = 0; i < widget.x.length; i++) {
       widget.indexList.add(widget.x[i].toString() + widget.y[i].toString());
@@ -251,7 +219,8 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                           const SizedBox(
                             width: 84 + 1.6,
                           ),
-                          for (int i = 0; i < topTitles.length; i++) headers[i],
+                          for (int i = 0; i < columnTitles.length; i++)
+                            headers[i],
                         ],
                       ),
                     ),
@@ -261,6 +230,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                     ),
                     Expanded(
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           ScrollConfiguration(
@@ -279,7 +249,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
                                       //first number is start hour and second number is end hour
-                                      for (int i = 6; i <= 23; i++)
+                                      for (int i = 0; i < rowTitles.length; i++)
                                         Column(
                                           children: [
                                             SizedBox(
@@ -287,9 +257,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                               width: 84,
                                               child: Center(
                                                   child: Text(
-                                                i < 10
-                                                    ? "0$i:00 - ${i + 1}:00"
-                                                    : "$i:00 - ${i + 1}:00",
+                                                rowTitles[i],
                                                 style: TextStyle(
                                                     color: Colors.grey[400]!,
                                                     fontWeight: FontWeight.w800,
@@ -304,7 +272,9 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                     ],
                                   ),
                                   Container(
-                                    height: (18 * widget.cellHeight) + 18 * 1.6,
+                                    height:
+                                        (rowTitles.length * widget.cellHeight) +
+                                            rowTitles.length * 1.6,
                                     width: 1.6,
                                     color: Colors.grey[200],
                                   ),
@@ -338,9 +308,10 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: <Widget>[
                                             SizedBox(
-                                              height: (18 * widget.cellHeight) +
-                                                  (18 * 1.6),
-                                              width: (topTitles.length *
+                                              height: (rowTitles.length *
+                                                      widget.cellHeight) +
+                                                  (rowTitles.length * 1.6),
+                                              width: (columnTitles.length *
                                                   widget.cellWidth),
                                               child: Stack(
                                                 children: <Widget>[
@@ -349,7 +320,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                         MainAxisSize.min,
                                                     children: <Widget>[
                                                       for (int i = 0;
-                                                          i < 18;
+                                                          i < rowTitles.length;
                                                           i++)
                                                         Column(
                                                           mainAxisSize:
@@ -358,7 +329,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                             Row(children: [
                                                               for (int j = 0;
                                                                   j <
-                                                                      topTitles
+                                                                      columnTitles
                                                                           .length;
                                                                   j++)
                                                                 GestureDetector(
@@ -444,7 +415,12 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                               addOnPressed: () {
                                                                                 if (widget.formKey.currentState!.validate()) {
                                                                                   setState(() {
-                                                                                    EventModel event = EventModel(color: widget.eventAlert.initialEventColor, title: widget.eventAlert.alertTextController.text, time: getTime(i), dayIndex: j);
+                                                                                    EventModel event = EventModel(
+                                                                                      color: widget.eventAlert.initialEventColor,
+                                                                                      title: widget.eventAlert.alertTextController.text,
+                                                                                      rowIndex: i,
+                                                                                      columnIndex: j,
+                                                                                    );
 
                                                                                     widget.eventList.add(event);
                                                                                     widget.eventAlert.alertTextController.clear();
@@ -462,9 +438,9 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                   },
                                                                   child:
                                                                       Container(
-                                                                    color: widget.currentTitleIndex !=
+                                                                    color: widget.currentColumnTitleIndex !=
                                                                             null
-                                                                        ? widget.currentTitleIndex ==
+                                                                        ? widget.currentColumnTitleIndex ==
                                                                                 j
                                                                             ? Colors.blueGrey[
                                                                                 100]
@@ -641,7 +617,9 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                         MainAxisSize.min,
                                                     children: <Widget>[
                                                       for (var i = 0;
-                                                          i < topTitles.length;
+                                                          i <
+                                                              columnTitles
+                                                                  .length;
                                                           i++)
                                                         Row(
                                                           mainAxisSize:
@@ -655,10 +633,13 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                             // The vertical lines that divides the columns
                                                             Container(
                                                               width: 1.6,
-                                                              height: 18 *
+                                                              height: rowTitles
+                                                                          .length *
                                                                       widget
                                                                           .cellHeight +
-                                                                  18 * 1.6,
+                                                                  rowTitles
+                                                                          .length *
+                                                                      1.6,
                                                               color: Colors
                                                                   .grey[200],
                                                             )
@@ -689,49 +670,5 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
         ),
       )),
     );
-  }
-}
-
-/// Method to get time of row index (i)
-String getTime(int i) {
-  switch (i) {
-    case 0:
-      return "06:00 - 07:00";
-    case 1:
-      return "07:00 - 08:00";
-    case 2:
-      return "08:00 - 09:00";
-    case 3:
-      return "09:00 - 10:00";
-    case 4:
-      return "10:00 - 11:00";
-    case 5:
-      return "11:00 - 12:00";
-    case 6:
-      return "12:00 - 13:00";
-    case 7:
-      return "13:00 - 14:00";
-    case 8:
-      return "14:00 - 15:00";
-    case 9:
-      return "15:00 - 16:00";
-    case 10:
-      return "16:00 - 17:00";
-    case 11:
-      return "17:00 - 18:00";
-    case 12:
-      return "18:00 - 19:00";
-    case 13:
-      return "19:00 - 20:00";
-    case 14:
-      return "20:00 - 21:00";
-    case 15:
-      return "21:00 - 22:00";
-    case 16:
-      return "22:00 - 23:00";
-    case 17:
-      return "23:00 - 24:00";
-    default:
-      return "00:00 - 00:00";
   }
 }

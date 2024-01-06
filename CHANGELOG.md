@@ -9,3 +9,7 @@
 ## 0.0.3
 
 * Added documentation for classes, functions, and other elements.
+
+## 0.0.4
+
+* Users can now customize rowTitle and columnTitle lists.
