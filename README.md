@@ -129,7 +129,7 @@ You can define it as you want. For Example: <br>
 columnTitles: const ["Column 1", "Column 2", "Column 3", ...],
 currentColumnTitleIndex: 2,
 ```
-If you define like this, selected day is 3 if `currentColumnTitleIndex` is 2. 
+If you define like this, selected column is 3 if `currentColumnTitleIndex` is 2. 
 
 `rowTitles` contain times or values that you define. It is not required. <br> The default value is : 
 ```dart
