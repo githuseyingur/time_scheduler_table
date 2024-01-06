@@ -76,5 +76,7 @@ You can define it as : <br>
 topTitles: const ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],
 currentTitleIndex: 2,
 ```
-If you define like this, the `topTitles` contain numbers from 1 to 14. And selected day is 3 if `currentTitleIndex` is 2.
+If you define like this, the `topTitles` contain numbers from 1 to 14. And selected day is 3 if `currentTitleIndex` is 2. <br> <br> <br> <br>
+
+Thanks to [Mesut Demir](https://github.com/mesut-demr) :coffee:
 
