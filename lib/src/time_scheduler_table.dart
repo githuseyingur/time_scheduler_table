@@ -83,7 +83,15 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
   Widget build(BuildContext context) {
     // columnTitles are table column names.
     List<String>? columnTitles = widget.columnTitles ??
-        ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+        [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat",
+          "Sun",
+        ];
     List<String>? rowTitles = widget.rowTitles ??
         [
           '06:00 - 07:00',
@@ -103,7 +111,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
           '20:00 - 21:00',
           '21:00 - 22:00',
           '22:00 - 23:00',
-          '23:00 - 24:00'
+          '23:00 - 24:00',
         ];
 
     // headers is a widget list containing table column names.

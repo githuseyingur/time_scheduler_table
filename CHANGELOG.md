@@ -13,3 +13,7 @@
 ## 0.0.4
 
 * Users can now customize rowTitle and columnTitle lists.
+
+## 0.0.5
+
+* optimization
