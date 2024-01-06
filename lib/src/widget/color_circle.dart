@@ -8,10 +8,19 @@ class ColorCircle extends StatelessWidget {
     required this.isSelected,
     required this.size,
   });
+
+  /// color of circle widget.
   final Color color;
+
+  /// method for selecting color circle widgets.
   final Function() onTap;
+
+  /// isSelected indicates whether the color circle widget is selected or not.
   final bool isSelected;
+
+  /// size of color circle widget.
   final double size;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

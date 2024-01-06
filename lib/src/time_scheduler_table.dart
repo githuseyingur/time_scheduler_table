@@ -19,24 +19,55 @@ class TimeSchedulerTable extends StatefulWidget {
       required this.cellHeight,
       required this.cellWidth,
       required this.eventAlert});
+
+  /// [title] is title of table
   final String? title;
+
+  /// [titleStyle] is text style of table's title
   final TextStyle? titleStyle;
+
+  /// [eventTitleStyle] is text style of event's title in cells
   final TextStyle? eventTitleStyle;
+
+  /// [isBack] is the button in the table that allows to go back. Default value is true.
   final bool isBack;
+
+  /// [currentTitleIndex] is the index indicating the currently selected column.
   final int? currentTitleIndex;
+
+  /// [eventList] is the list of [EventModel] containing events.
   final List<EventModel> eventList;
+
+  /// [cellHeight] is the height of cells in table.
   final double cellHeight;
+
+  /// [cellWidth] is the width of cells in table.
   final double cellWidth;
+
+  /// [selectedDate] is used to specify the selected column if [currentTitleIndex] is not given.
   final selectedDate = DateTime.now();
+
   final ScrollController mainHorizontalController = ScrollController();
   final ScrollController mainVerticalController = ScrollController();
   final ScrollController dayHorizontalController = ScrollController();
   final ScrollController timeVerticalController = ScrollController();
+
+  /// [x] is  list of column's index
   final List<int> x = [];
+
+  /// [y] is  list of row's index
   final List<int> y = [];
+
+  /// [indexList] is string list of (x+y)
   final List<String> indexList = [];
+
+  /// [topTitles] is list of column names.
   List<String>? topTitles;
+
+  /// [formKey] is key of TextFormField in [EventAlert]
   final formKey = GlobalKey<FormState>();
+
+  /// [EventAlert] is is the class containing all the properties of the alert.
   final EventAlert eventAlert;
 
   @override
@@ -46,8 +77,9 @@ class TimeSchedulerTable extends StatefulWidget {
 class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
   @override
   Widget build(BuildContext context) {
+    // topTitles are table column names.
     List<String>? topTitles = widget.topTitles ?? ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
-
+    // headers is a widget list containing table column names.
     List<Widget> headers = List.generate(topTitles.length, (index) {
       return SizedBox(
         height: 32,
@@ -70,8 +102,12 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
       );
     });
 
+    // widget.x is a topTile List
     widget.x.clear();
+
+    // widget.y is a time List
     widget.y.clear();
+
     widget.indexList.clear();
     for (var element in widget.eventList) {
       widget.x.add(element.dayIndex);
@@ -413,7 +449,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                                             widget.eventAlert.initialEventColor,
                                                                                         title: widget
                                                                                             .eventAlert.alertTextController.text,
-                                                                                        time: getLessonTime(i),
+                                                                                        time: getTime(i),
                                                                                         dayIndex: j);
 
                                                                                     widget.eventList.add(event);
@@ -737,7 +773,8 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
   }
 }
 
-String getLessonTime(int i) {
+/// Method to get time of row index (i)
+String getTime(int i) {
   switch (i) {
     case 0:
       return "06:00 - 07:00";
