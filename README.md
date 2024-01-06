@@ -1,4 +1,4 @@
-[![Pub](https://img.shields.io/pub/v/markdown.svg)](https://pub.dev/packages/markdown)
+[![Pub](https://img.shields.io/pub/v/markdown.svg)](https://pub.dev/packages/time_scheduler_table)
 [![package publisher](https://img.shields.io/pub/publisher/markdown.svg)](https://pub.dev/packages/time_scheduler_table/publisher) <br> <br>
 A time scheduler for Android & IOS where you can create events by clicking on cells, edit (update) and delete the events you have created. You can assign colours to events and if the name of the event is too long, you can see the full name and description by long pressing on the event.
 
