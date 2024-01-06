@@ -48,7 +48,8 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
-        borderRadius: widget.borderRadius ?? const BorderRadius.all(Radius.circular(32.0)),
+        borderRadius: widget.borderRadius ??
+            const BorderRadius.all(Radius.circular(32.0)),
       ),
       content: Container(
         width: MediaQuery.of(context).size.width * 0.8,
@@ -66,8 +67,10 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                     width: 24,
                   ),
                   Text(
-                    widget.alertTitle ?? (widget.isAdd == true ? "Add Alert" : "Edit Alert"),
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    widget.alertTitle ??
+                        (widget.isAdd == true ? "Add Alert" : "Edit Alert"),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.center,
                   ),
                   GestureDetector(
@@ -90,7 +93,8 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                 height: 4,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
                 child: Form(
                   key: widget.formKey,
                   child: TextFormField(
@@ -99,7 +103,8 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return widget.textFieldEmptyMessage ?? "Cannot be empty..";
+                        return widget.textFieldEmptyMessage ??
+                            "Cannot be empty..";
                       }
                       return null;
                     },
@@ -110,7 +115,8 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.grey[100],
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 0),
                       hintText: widget.hintText ?? "Event Name",
                       hintStyle: TextStyle(
                         color: Colors.grey[400],
@@ -135,12 +141,14 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                 child: widget.colorWidget,
               ),
               widget.isAdd == true
                   ? Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 60, vertical: 12),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.24,
                         child: ElevatedButton(
@@ -154,12 +162,14 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                             ),
                             child: Text(
                               widget.addButtonTitle ?? "ADD",
-                              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                              style: const TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w600),
                             )),
                       ),
                     )
                   : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 12),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -172,11 +182,14 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 16),
                                 ),
                                 child: Text(
                                   widget.deleteButtonTitle ?? "DELETE",
-                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                  style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
                                 )),
                           ),
                           SizedBox(
@@ -188,11 +201,14 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 16),
                                 ),
                                 child: Text(
                                   widget.updateButtonTitle ?? "UPDATE",
-                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                  style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
                                 )),
                           ),
                         ],

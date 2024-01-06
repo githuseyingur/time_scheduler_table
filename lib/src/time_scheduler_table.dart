@@ -78,7 +78,8 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
   @override
   Widget build(BuildContext context) {
     // topTitles are table column names.
-    List<String>? topTitles = widget.topTitles ?? ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+    List<String>? topTitles =
+        widget.topTitles ?? ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
     // headers is a widget list containing table column names.
     List<Widget> headers = List.generate(topTitles.length, (index) {
       return SizedBox(
@@ -173,10 +174,12 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
     }
 
     widget.mainHorizontalController.addListener(() {
-      widget.dayHorizontalController.jumpTo(widget.mainHorizontalController.offset);
+      widget.dayHorizontalController
+          .jumpTo(widget.mainHorizontalController.offset);
     });
     widget.mainVerticalController.addListener(() {
-      widget.timeVerticalController.jumpTo(widget.mainVerticalController.offset);
+      widget.timeVerticalController
+          .jumpTo(widget.mainVerticalController.offset);
     });
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -192,7 +195,9 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,14 +207,17 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            child: const Icon(Icons.arrow_back_ios_rounded, size: 18, color: Colors.black),
+                            child: const Icon(Icons.arrow_back_ios_rounded,
+                                size: 18, color: Colors.black),
                           )
                         : const SizedBox(
                             width: 18,
                           ),
                     widget.title != null
                         ? Text(widget.title!,
-                            style: widget.titleStyle ?? const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+                            style: widget.titleStyle ??
+                                const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold))
                         : const SizedBox(),
                     const SizedBox(
                       width: 18,
@@ -256,7 +264,8 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           ScrollConfiguration(
-                            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                            behavior: ScrollConfiguration.of(context)
+                                .copyWith(scrollbars: false),
                             child: SingleChildScrollView(
                               physics: const NeverScrollableScrollPhysics(),
                               controller: widget.timeVerticalController,
@@ -264,7 +273,8 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
@@ -277,9 +287,13 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                               width: 84,
                                               child: Center(
                                                   child: Text(
-                                                i < 10 ? "0$i:00 - ${i + 1}:00" : "$i:00 - ${i + 1}:00",
+                                                i < 10
+                                                    ? "0$i:00 - ${i + 1}:00"
+                                                    : "$i:00 - ${i + 1}:00",
                                                 style: TextStyle(
-                                                    color: Colors.grey[400]!, fontWeight: FontWeight.w800, fontSize: 10),
+                                                    color: Colors.grey[400]!,
+                                                    fontWeight: FontWeight.w800,
+                                                    fontSize: 10),
                                               )),
                                             ),
                                             const SizedBox(
@@ -311,48 +325,64 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                     controller: widget.mainHorizontalController,
                                     scrollDirection: Axis.horizontal,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         Row(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
-                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
                                           mainAxisSize: MainAxisSize.min,
                                           children: <Widget>[
                                             SizedBox(
-                                              height: (18 * widget.cellHeight) + (18 * 1.6),
-                                              width: (topTitles.length * widget.cellWidth),
+                                              height: (18 * widget.cellHeight) +
+                                                  (18 * 1.6),
+                                              width: (topTitles.length *
+                                                  widget.cellWidth),
                                               child: Stack(
                                                 children: <Widget>[
                                                   Column(
-                                                    mainAxisSize: MainAxisSize.min,
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
                                                     children: <Widget>[
-                                                      for (int i = 0; i < 18; i++)
+                                                      for (int i = 0;
+                                                          i < 18;
+                                                          i++)
                                                         Column(
-                                                          mainAxisSize: MainAxisSize.min,
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
                                                           children: <Widget>[
                                                             Row(children: [
-                                                              for (int j = 0; j < topTitles.length; j++)
+                                                              for (int j = 0;
+                                                                  j <
+                                                                      topTitles
+                                                                          .length;
+                                                                  j++)
                                                                 GestureDetector(
                                                                   onTap: () {
-                                                                    widget.eventAlert.alertTextController.text = "";
+                                                                    widget
+                                                                        .eventAlert
+                                                                        .alertTextController
+                                                                        .text = "";
 
                                                                     showDialog(
-                                                                      context: context,
-                                                                      builder: (context) {
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) {
                                                                         return StatefulBuilder(
                                                                           builder: (context, state) => SchedulerAlert(
                                                                               isAdd: true,
                                                                               formKey: widget.formKey,
-                                                                              textController:
-                                                                                  widget.eventAlert.alertTextController,
+                                                                              textController: widget.eventAlert.alertTextController,
                                                                               alertTitle: widget.eventAlert.addAlertTitle,
                                                                               addButtonTitle: widget.eventAlert.addButtonTitle,
                                                                               selectedColor: widget.eventAlert.initialEventColor,
                                                                               borderRadius: widget.eventAlert.borderRadius,
-                                                                              textFieldEmptyMessage:
-                                                                                  widget.eventAlert.textFieldEmptyValidateMessage,
+                                                                              textFieldEmptyMessage: widget.eventAlert.textFieldEmptyValidateMessage,
                                                                               x: j,
                                                                               y: i,
                                                                               hintText: widget.eventAlert.hintText,
@@ -360,97 +390,61 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                                                 children: [
                                                                                   ColorCircle(
-                                                                                    size:
-                                                                                        MediaQuery.of(context).size.width * 0.08,
+                                                                                    size: MediaQuery.of(context).size.width * 0.08,
                                                                                     onTap: () {
                                                                                       state(() {
-                                                                                        widget.eventAlert.initialEventColor =
-                                                                                            Colors.orange;
+                                                                                        widget.eventAlert.initialEventColor = Colors.orange;
                                                                                       });
                                                                                     },
                                                                                     color: Colors.orange,
-                                                                                    isSelected:
-                                                                                        widget.eventAlert.initialEventColor ==
-                                                                                                Colors.orange
-                                                                                            ? true
-                                                                                            : false,
+                                                                                    isSelected: widget.eventAlert.initialEventColor == Colors.orange ? true : false,
                                                                                   ),
                                                                                   ColorCircle(
-                                                                                    size:
-                                                                                        MediaQuery.of(context).size.width * 0.08,
+                                                                                    size: MediaQuery.of(context).size.width * 0.08,
                                                                                     onTap: () {
                                                                                       state(() {
-                                                                                        widget.eventAlert.initialEventColor =
-                                                                                            Colors.pink;
+                                                                                        widget.eventAlert.initialEventColor = Colors.pink;
                                                                                       });
                                                                                     },
                                                                                     color: Colors.pink,
-                                                                                    isSelected:
-                                                                                        widget.eventAlert.initialEventColor ==
-                                                                                                Colors.pink
-                                                                                            ? true
-                                                                                            : false,
+                                                                                    isSelected: widget.eventAlert.initialEventColor == Colors.pink ? true : false,
                                                                                   ),
                                                                                   ColorCircle(
-                                                                                    size:
-                                                                                        MediaQuery.of(context).size.width * 0.08,
+                                                                                    size: MediaQuery.of(context).size.width * 0.08,
                                                                                     onTap: () {
                                                                                       state(() {
-                                                                                        widget.eventAlert.initialEventColor =
-                                                                                            Colors.blue;
+                                                                                        widget.eventAlert.initialEventColor = Colors.blue;
                                                                                       });
                                                                                     },
                                                                                     color: Colors.blue,
-                                                                                    isSelected:
-                                                                                        widget.eventAlert.initialEventColor ==
-                                                                                                Colors.blue
-                                                                                            ? true
-                                                                                            : false,
+                                                                                    isSelected: widget.eventAlert.initialEventColor == Colors.blue ? true : false,
                                                                                   ),
                                                                                   ColorCircle(
-                                                                                    size:
-                                                                                        MediaQuery.of(context).size.width * 0.08,
+                                                                                    size: MediaQuery.of(context).size.width * 0.08,
                                                                                     onTap: () {
                                                                                       state(() {
-                                                                                        widget.eventAlert.initialEventColor =
-                                                                                            Colors.green;
+                                                                                        widget.eventAlert.initialEventColor = Colors.green;
                                                                                       });
                                                                                     },
                                                                                     color: Colors.green,
-                                                                                    isSelected:
-                                                                                        widget.eventAlert.initialEventColor ==
-                                                                                                Colors.green
-                                                                                            ? true
-                                                                                            : false,
+                                                                                    isSelected: widget.eventAlert.initialEventColor == Colors.green ? true : false,
                                                                                   ),
                                                                                   ColorCircle(
-                                                                                    size:
-                                                                                        MediaQuery.of(context).size.width * 0.08,
+                                                                                    size: MediaQuery.of(context).size.width * 0.08,
                                                                                     onTap: () {
                                                                                       state(() {
-                                                                                        widget.eventAlert.initialEventColor =
-                                                                                            Colors.deepPurpleAccent;
+                                                                                        widget.eventAlert.initialEventColor = Colors.deepPurpleAccent;
                                                                                       });
                                                                                     },
                                                                                     color: Colors.deepPurpleAccent,
-                                                                                    isSelected:
-                                                                                        widget.eventAlert.initialEventColor ==
-                                                                                                Colors.deepPurpleAccent
-                                                                                            ? true
-                                                                                            : false,
+                                                                                    isSelected: widget.eventAlert.initialEventColor == Colors.deepPurpleAccent ? true : false,
                                                                                   ),
                                                                                 ],
                                                                               ),
                                                                               addOnPressed: () {
                                                                                 if (widget.formKey.currentState!.validate()) {
                                                                                   setState(() {
-                                                                                    EventModel event = EventModel(
-                                                                                        color:
-                                                                                            widget.eventAlert.initialEventColor,
-                                                                                        title: widget
-                                                                                            .eventAlert.alertTextController.text,
-                                                                                        time: getTime(i),
-                                                                                        dayIndex: j);
+                                                                                    EventModel event = EventModel(color: widget.eventAlert.initialEventColor, title: widget.eventAlert.alertTextController.text, time: getTime(i), dayIndex: j);
 
                                                                                     widget.eventList.add(event);
                                                                                     widget.eventAlert.alertTextController.clear();
@@ -459,33 +453,45 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                                       widget.eventAlert.addOnPressed!(event);
                                                                                     }
                                                                                   });
-                                                                                  Navigator.of(context, rootNavigator: true)
-                                                                                      .pop('dialog');
+                                                                                  Navigator.of(context, rootNavigator: true).pop('dialog');
                                                                                 }
                                                                               }),
                                                                         );
                                                                       },
                                                                     );
                                                                   },
-                                                                  child: Container(
-                                                                    color: widget.currentTitleIndex != null
-                                                                        ? widget.currentTitleIndex == j
-                                                                            ? Colors.blueGrey[100]
-                                                                            : Colors.white
-                                                                        : widget.selectedDate.weekday == j + 1
+                                                                  child:
+                                                                      Container(
+                                                                    color: widget.currentTitleIndex !=
+                                                                            null
+                                                                        ? widget.currentTitleIndex ==
+                                                                                j
+                                                                            ? Colors.blueGrey[
+                                                                                100]
+                                                                            : Colors
+                                                                                .white
+                                                                        : widget.selectedDate.weekday ==
+                                                                                j + 1
                                                                             ? Colors.blueGrey[100]
                                                                             : Colors.white,
-                                                                    height: widget.cellHeight,
-                                                                    width: widget.cellWidth,
-                                                                    padding:
-                                                                        const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-                                                                    child: widget.indexList.contains(j.toString() + i.toString())
+                                                                    height: widget
+                                                                        .cellHeight,
+                                                                    width: widget
+                                                                        .cellWidth,
+                                                                    padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                        horizontal:
+                                                                            4,
+                                                                        vertical:
+                                                                            4),
+                                                                    child: widget
+                                                                            .indexList
+                                                                            .contains(j.toString() +
+                                                                                i.toString())
                                                                         ? GestureDetector(
-                                                                            onTap: () {
-                                                                              widget.eventAlert.alertTextController.text = widget
-                                                                                  .eventList[widget.indexList
-                                                                                      .indexOf(j.toString() + i.toString())]
-                                                                                  .title!;
+                                                                            onTap:
+                                                                                () {
+                                                                              widget.eventAlert.alertTextController.text = widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].title!;
 
                                                                               showDialog(
                                                                                 context: context,
@@ -494,212 +500,114 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                                     builder: (context, state) => SchedulerAlert(
                                                                                         isAdd: false,
                                                                                         formKey: widget.formKey,
-                                                                                        textController:
-                                                                                            widget.eventAlert.alertTextController,
-                                                                                        alertTitle:
-                                                                                            widget.eventAlert.editAlertTitle,
-                                                                                        deleteButtonTitle:
-                                                                                            widget.eventAlert.deleteButtonTitle,
-                                                                                        updateButtonTitle:
-                                                                                            widget.eventAlert.updateButtonTitle,
-                                                                                        borderRadius:
-                                                                                            widget.eventAlert.borderRadius,
-                                                                                        textFieldEmptyMessage: widget.eventAlert
-                                                                                            .textFieldEmptyValidateMessage,
+                                                                                        textController: widget.eventAlert.alertTextController,
+                                                                                        alertTitle: widget.eventAlert.editAlertTitle,
+                                                                                        deleteButtonTitle: widget.eventAlert.deleteButtonTitle,
+                                                                                        updateButtonTitle: widget.eventAlert.updateButtonTitle,
+                                                                                        borderRadius: widget.eventAlert.borderRadius,
+                                                                                        textFieldEmptyMessage: widget.eventAlert.textFieldEmptyValidateMessage,
                                                                                         x: j,
                                                                                         y: i,
                                                                                         hintText: widget.eventAlert.hintText,
                                                                                         colorWidget: Row(
-                                                                                          mainAxisAlignment:
-                                                                                              MainAxisAlignment.spaceEvenly,
+                                                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                                                           children: [
                                                                                             ColorCircle(
-                                                                                              size: MediaQuery.of(context)
-                                                                                                      .size
-                                                                                                      .width *
-                                                                                                  0.08,
+                                                                                              size: MediaQuery.of(context).size.width * 0.08,
                                                                                               onTap: () {
                                                                                                 state(() {
-                                                                                                  widget.eventAlert
-                                                                                                          .initialEventColor =
-                                                                                                      Colors.orange;
+                                                                                                  widget.eventAlert.initialEventColor = Colors.orange;
                                                                                                 });
                                                                                               },
                                                                                               color: Colors.orange,
-                                                                                              isSelected: widget.eventAlert
-                                                                                                          .initialEventColor ==
-                                                                                                      Colors.orange
-                                                                                                  ? true
-                                                                                                  : false,
+                                                                                              isSelected: widget.eventAlert.initialEventColor == Colors.orange ? true : false,
                                                                                             ),
                                                                                             ColorCircle(
-                                                                                              size: MediaQuery.of(context)
-                                                                                                      .size
-                                                                                                      .width *
-                                                                                                  0.08,
+                                                                                              size: MediaQuery.of(context).size.width * 0.08,
                                                                                               onTap: () {
                                                                                                 state(() {
-                                                                                                  widget.eventAlert
-                                                                                                          .initialEventColor =
-                                                                                                      Colors.pink;
+                                                                                                  widget.eventAlert.initialEventColor = Colors.pink;
                                                                                                 });
                                                                                               },
                                                                                               color: Colors.pink,
-                                                                                              isSelected: widget.eventAlert
-                                                                                                          .initialEventColor ==
-                                                                                                      Colors.pink
-                                                                                                  ? true
-                                                                                                  : false,
+                                                                                              isSelected: widget.eventAlert.initialEventColor == Colors.pink ? true : false,
                                                                                             ),
                                                                                             ColorCircle(
-                                                                                              size: MediaQuery.of(context)
-                                                                                                      .size
-                                                                                                      .width *
-                                                                                                  0.08,
+                                                                                              size: MediaQuery.of(context).size.width * 0.08,
                                                                                               onTap: () {
                                                                                                 state(() {
-                                                                                                  widget.eventAlert
-                                                                                                          .initialEventColor =
-                                                                                                      Colors.blue;
+                                                                                                  widget.eventAlert.initialEventColor = Colors.blue;
                                                                                                 });
                                                                                               },
                                                                                               color: Colors.blue,
-                                                                                              isSelected: widget.eventAlert
-                                                                                                          .initialEventColor ==
-                                                                                                      Colors.blue
-                                                                                                  ? true
-                                                                                                  : false,
+                                                                                              isSelected: widget.eventAlert.initialEventColor == Colors.blue ? true : false,
                                                                                             ),
                                                                                             ColorCircle(
-                                                                                              size: MediaQuery.of(context)
-                                                                                                      .size
-                                                                                                      .width *
-                                                                                                  0.08,
+                                                                                              size: MediaQuery.of(context).size.width * 0.08,
                                                                                               onTap: () {
                                                                                                 state(() {
-                                                                                                  widget.eventAlert
-                                                                                                          .initialEventColor =
-                                                                                                      Colors.green;
+                                                                                                  widget.eventAlert.initialEventColor = Colors.green;
                                                                                                 });
                                                                                               },
                                                                                               color: Colors.green,
-                                                                                              isSelected: widget.eventAlert
-                                                                                                          .initialEventColor ==
-                                                                                                      Colors.green
-                                                                                                  ? true
-                                                                                                  : false,
+                                                                                              isSelected: widget.eventAlert.initialEventColor == Colors.green ? true : false,
                                                                                             ),
                                                                                             ColorCircle(
-                                                                                              size: MediaQuery.of(context)
-                                                                                                      .size
-                                                                                                      .width *
-                                                                                                  0.08,
+                                                                                              size: MediaQuery.of(context).size.width * 0.08,
                                                                                               onTap: () {
                                                                                                 state(() {
-                                                                                                  widget.eventAlert
-                                                                                                          .initialEventColor =
-                                                                                                      Colors.deepPurpleAccent;
+                                                                                                  widget.eventAlert.initialEventColor = Colors.deepPurpleAccent;
                                                                                                 });
                                                                                               },
                                                                                               color: Colors.deepPurpleAccent,
-                                                                                              isSelected: widget.eventAlert
-                                                                                                          .initialEventColor ==
-                                                                                                      Colors.deepPurpleAccent
-                                                                                                  ? true
-                                                                                                  : false,
+                                                                                              isSelected: widget.eventAlert.initialEventColor == Colors.deepPurpleAccent ? true : false,
                                                                                             ),
                                                                                           ],
                                                                                         ),
                                                                                         deleteOnPressed: () {
                                                                                           setState(() {
-                                                                                            EventModel eventModel = widget
-                                                                                                .eventList
-                                                                                                .elementAt(widget.indexList
-                                                                                                    .indexOf(j.toString() +
-                                                                                                        i.toString()));
-                                                                                            widget.eventList.removeAt(
-                                                                                                widget.indexList.indexOf(
-                                                                                                    j.toString() + i.toString()));
+                                                                                            EventModel eventModel = widget.eventList.elementAt(widget.indexList.indexOf(j.toString() + i.toString()));
+                                                                                            widget.eventList.removeAt(widget.indexList.indexOf(j.toString() + i.toString()));
 
-                                                                                            if (widget
-                                                                                                    .eventAlert.deleteOnPressed !=
-                                                                                                null) {
-                                                                                              widget.eventAlert
-                                                                                                  .deleteOnPressed!(eventModel);
+                                                                                            if (widget.eventAlert.deleteOnPressed != null) {
+                                                                                              widget.eventAlert.deleteOnPressed!(eventModel);
                                                                                             }
                                                                                           });
-                                                                                          Navigator.of(context,
-                                                                                                  rootNavigator: true)
-                                                                                              .pop('dialog');
+                                                                                          Navigator.of(context, rootNavigator: true).pop('dialog');
                                                                                         },
                                                                                         updateOnPressed: () {
-                                                                                          if (widget.formKey.currentState!
-                                                                                              .validate()) {
+                                                                                          if (widget.formKey.currentState!.validate()) {
                                                                                             setState(() {
-                                                                                              widget
-                                                                                                      .eventList[widget.indexList
-                                                                                                          .indexOf(j.toString() +
-                                                                                                              i.toString())]
-                                                                                                      .color =
-                                                                                                  widget.eventAlert
-                                                                                                      .initialEventColor;
-                                                                                              widget
-                                                                                                      .eventList[widget.indexList
-                                                                                                          .indexOf(j.toString() +
-                                                                                                              i.toString())]
-                                                                                                      .title =
-                                                                                                  widget.eventAlert
-                                                                                                      .alertTextController.text;
+                                                                                              widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].color = widget.eventAlert.initialEventColor;
+                                                                                              widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].title = widget.eventAlert.alertTextController.text;
 
-                                                                                              if (widget.eventAlert
-                                                                                                      .updateOnPressed !=
-                                                                                                  null) {
-                                                                                                widget.eventAlert
-                                                                                                        .updateOnPressed!(
-                                                                                                    widget.eventList[widget
-                                                                                                        .indexList
-                                                                                                        .indexOf(j.toString() +
-                                                                                                            i.toString())]);
+                                                                                              if (widget.eventAlert.updateOnPressed != null) {
+                                                                                                widget.eventAlert.updateOnPressed!(widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())]);
                                                                                               }
                                                                                             });
 
-                                                                                            Navigator.of(context,
-                                                                                                    rootNavigator: true)
-                                                                                                .pop('dialog');
+                                                                                            Navigator.of(context, rootNavigator: true).pop('dialog');
                                                                                           }
                                                                                         }),
                                                                                   );
                                                                                 },
                                                                               );
                                                                             },
-                                                                            child: Container(
+                                                                            child:
+                                                                                Container(
                                                                               decoration: BoxDecoration(
                                                                                 borderRadius: BorderRadius.circular(6),
-                                                                                color: widget
-                                                                                        .eventList[widget.indexList
-                                                                                            .indexOf(j.toString() + i.toString())]
-                                                                                        .color ??
-                                                                                    Colors.teal,
+                                                                                color: widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].color ?? Colors.teal,
                                                                               ),
                                                                               alignment: Alignment.center,
-                                                                              padding: const EdgeInsets.symmetric(
-                                                                                  horizontal: 6, vertical: 6),
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
                                                                               child: Tooltip(
                                                                                 key: UniqueKey(),
-                                                                                message: widget
-                                                                                    .eventList[widget.indexList
-                                                                                        .indexOf(j.toString() + i.toString())]
-                                                                                    .title!,
-                                                                                decoration: BoxDecoration(
-                                                                                    color: Colors.black.withOpacity(0.7),
-                                                                                    borderRadius: BorderRadius.circular(14)),
-                                                                                textStyle: const TextStyle(
-                                                                                    color: Colors.white, fontSize: 10),
+                                                                                message: widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].title!,
+                                                                                decoration: BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius: BorderRadius.circular(14)),
+                                                                                textStyle: const TextStyle(color: Colors.white, fontSize: 10),
                                                                                 child: Text(
-                                                                                  widget
-                                                                                      .eventList[widget.indexList
-                                                                                          .indexOf(j.toString() + i.toString())]
-                                                                                      .title!,
+                                                                                  widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].title!,
                                                                                   style: widget.eventTitleStyle ??
                                                                                       const TextStyle(
                                                                                         color: Colors.white,
@@ -720,7 +628,8 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                             ]),
                                                             Divider(
                                                               height: 1.6,
-                                                              color: Colors.grey[200],
+                                                              color: Colors
+                                                                  .grey[200],
                                                               thickness: 1.8,
                                                             ),
                                                           ],
@@ -728,20 +637,30 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                     ],
                                                   ),
                                                   Row(
-                                                    mainAxisSize: MainAxisSize.min,
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
                                                     children: <Widget>[
-                                                      for (var i = 0; i < topTitles.length; i++)
+                                                      for (var i = 0;
+                                                          i < topTitles.length;
+                                                          i++)
                                                         Row(
-                                                          mainAxisSize: MainAxisSize.min,
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
                                                           children: <Widget>[
                                                             SizedBox(
-                                                              width: widget.cellWidth - 1.6,
+                                                              width: widget
+                                                                      .cellWidth -
+                                                                  1.6,
                                                             ),
                                                             // The vertical lines that divides the columns
                                                             Container(
                                                               width: 1.6,
-                                                              height: 18 * widget.cellHeight + 18 * 1.6,
-                                                              color: Colors.grey[200],
+                                                              height: 18 *
+                                                                      widget
+                                                                          .cellHeight +
+                                                                  18 * 1.6,
+                                                              color: Colors
+                                                                  .grey[200],
                                                             )
                                                           ],
                                                         )

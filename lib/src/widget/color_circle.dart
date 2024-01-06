@@ -31,7 +31,8 @@ class ColorCircle extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           shape: BoxShape.circle,
-          border: Border.all(color: isSelected ? Colors.black : Colors.transparent, width: 2),
+          border: Border.all(
+              color: isSelected ? Colors.black : Colors.transparent, width: 2),
         ),
       ),
     );
