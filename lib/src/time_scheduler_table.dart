@@ -19,6 +19,9 @@ class TimeSchedulerTable extends StatefulWidget {
     required this.cellHeight,
     required this.cellWidth,
     required this.eventAlert,
+    this.scrollColor,
+    this.trackingColor,
+    this.isScrollTrackingVisible,
   });
 
   /// [title] is title of table
@@ -72,6 +75,15 @@ class TimeSchedulerTable extends StatefulWidget {
 
   /// [EventAlert] is the class containing all the properties of the alert.
   final EventAlert eventAlert;
+
+  /// [scrollColor] is color of horizontal and vertical scrolls.
+  final Color? scrollColor;
+
+  /// tracking color
+  final Color? trackingColor;
+
+  /// scroll tracking visibility
+  final bool? isScrollTrackingVisible;
 
   @override
   State<TimeSchedulerTable> createState() => _TimeSchedulerTableState();
@@ -305,24 +317,28 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                             child: RawScrollbar(
                               controller: widget.mainVerticalController,
                               thumbVisibility: true,
-                              thumbColor: Colors.deepOrange.withOpacity(0.6),
+                              thumbColor: widget.scrollColor ??
+                                  Colors.deepOrange.withOpacity(0.6),
                               interactive: true,
                               radius: const Radius.circular(8),
                               thickness: 3,
-                              trackVisibility: true,
-                              trackColor: Colors.deepOrange.withOpacity(0.1),
+                              trackVisibility:
+                                  widget.isScrollTrackingVisible ?? true,
+                              trackColor: widget.trackingColor ??
+                                  Colors.deepOrange.withOpacity(0.1),
                               child: SingleChildScrollView(
                                 controller: widget.mainVerticalController,
                                 child: RawScrollbar(
                                   controller: widget.mainHorizontalController,
                                   thumbVisibility: true,
-                                  thumbColor:
+                                  thumbColor: widget.scrollColor ??
                                       Colors.deepOrange.withOpacity(0.6),
                                   interactive: true,
                                   radius: const Radius.circular(8),
                                   thickness: 3,
-                                  trackVisibility: true,
-                                  trackColor:
+                                  trackVisibility:
+                                      widget.isScrollTrackingVisible ?? true,
+                                  trackColor: widget.trackingColor ??
                                       Colors.deepOrange.withOpacity(0.1),
                                   child: SingleChildScrollView(
                                     controller: widget.mainHorizontalController,

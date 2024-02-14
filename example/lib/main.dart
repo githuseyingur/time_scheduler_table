@@ -92,6 +92,8 @@ class MyApp extends StatelessWidget {
         eventTitleStyle: const TextStyle(color: Colors.white, fontSize: 8),
         isBack: false, // back button
         eventList: eventList,
+        scrollColor: Colors.deepOrange.withOpacity(0.7),
+        isScrollTrackingVisible: true,
         eventAlert: EventAlert(
           alertTextController: textController,
           borderRadius: const BorderRadius.all(

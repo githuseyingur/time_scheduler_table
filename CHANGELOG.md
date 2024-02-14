@@ -20,4 +20,4 @@
 
 ## 1.0.0
 
-* Stable version - UI design updates & fixed issues
+* Stable version - fixed issues & added new features (about scrollbars).
