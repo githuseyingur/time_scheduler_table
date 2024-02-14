@@ -5,21 +5,21 @@ import 'package:time_scheduler_table/src/model/event_model.dart';
 import 'package:time_scheduler_table/src/widget/color_circle.dart';
 import 'package:time_scheduler_table/src/widget/scheduler_alert.dart';
 
-// ignore: must_be_immutable
 class TimeSchedulerTable extends StatefulWidget {
-  TimeSchedulerTable(
-      {super.key,
-      this.title,
-      this.titleStyle,
-      this.eventTitleStyle,
-      this.isBack = true,
-      this.currentColumnTitleIndex,
-      this.columnTitles,
-      this.rowTitles,
-      required this.eventList,
-      required this.cellHeight,
-      required this.cellWidth,
-      required this.eventAlert});
+  TimeSchedulerTable({
+    super.key,
+    this.title,
+    this.titleStyle,
+    this.eventTitleStyle,
+    this.isBack = true,
+    this.currentColumnTitleIndex,
+    this.columnTitles,
+    this.rowTitles,
+    required this.eventList,
+    required this.cellHeight,
+    required this.cellWidth,
+    required this.eventAlert,
+  });
 
   /// [title] is title of table
   final String? title;
@@ -30,10 +30,10 @@ class TimeSchedulerTable extends StatefulWidget {
   /// [eventTitleStyle] is text style of event's title in cells
   final TextStyle? eventTitleStyle;
 
-  /// [isBack] is the button in the table that allows to go back. Default value is true.
+  /// [isBack] is the button that allows to go back. Default value is true.
   final bool isBack;
 
-  /// [currentColumnTitleIndex] is the index indicating the currently selected column.
+  /// The index indicating the currently selected column.
   final int? currentColumnTitleIndex;
 
   /// [eventList] is the list of [EventModel] containing events.
@@ -45,7 +45,6 @@ class TimeSchedulerTable extends StatefulWidget {
   /// [cellWidth] is the width of cells in table.
   final double cellWidth;
 
-  /// [selectedDate] is used to specify the selected column if [currentColumnTitleIndex] is not given.
   final selectedDate = DateTime.now();
 
   final ScrollController mainHorizontalController = ScrollController();
@@ -63,10 +62,10 @@ class TimeSchedulerTable extends StatefulWidget {
   final List<String> indexList = [];
 
   /// [columnTitles] is list of column names.
-  List<String>? columnTitles;
+  final List<String>? columnTitles;
 
   /// [rowTitles] is list of row names.
-  List<String>? rowTitles;
+  final List<String>? rowTitles;
 
   /// [formKey] is key of TextFormField in [EventAlert]
   final formKey = GlobalKey<FormState>();
@@ -124,14 +123,14 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
             columnTitles[index],
             style: TextStyle(
                 fontWeight: FontWeight.w800,
-                fontSize: 10,
+                fontSize: 9,
                 color: widget.currentColumnTitleIndex != null
                     ? widget.currentColumnTitleIndex == index
                         ? Colors.blue
-                        : Colors.grey[400]
+                        : Colors.grey[500]
                     : widget.selectedDate.weekday == index + 1
                         ? Colors.blue
-                        : Colors.grey[400]),
+                        : Colors.grey[500]),
           ),
         ),
       );
@@ -172,8 +171,9 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16)),
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
+                  ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,17 +183,24 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            child: const Icon(Icons.arrow_back_ios_rounded,
-                                size: 18, color: Colors.black),
+                            child: const Icon(
+                              Icons.arrow_back_ios_rounded,
+                              size: 18,
+                              color: Colors.black,
+                            ),
                           )
                         : const SizedBox(
                             width: 18,
                           ),
                     widget.title != null
-                        ? Text(widget.title!,
+                        ? Text(
+                            widget.title!,
                             style: widget.titleStyle ??
                                 const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold))
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          )
                         : const SizedBox(),
                     const SizedBox(
                       width: 18,
@@ -228,7 +235,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                             width: 84 + 1.6,
                           ),
                           for (int i = 0; i < columnTitles.length; i++)
-                            headers[i],
+                            headers[i]
                         ],
                       ),
                     ),
@@ -242,8 +249,9 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           ScrollConfiguration(
-                            behavior: ScrollConfiguration.of(context)
-                                .copyWith(scrollbars: false),
+                            behavior: ScrollConfiguration.of(context).copyWith(
+                              scrollbars: false,
+                            ),
                             child: SingleChildScrollView(
                               physics: const NeverScrollableScrollPhysics(),
                               controller: widget.timeVerticalController,
@@ -264,13 +272,16 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                               height: widget.cellHeight,
                                               width: 84,
                                               child: Center(
-                                                  child: Text(
-                                                rowTitles[i],
-                                                style: TextStyle(
-                                                    color: Colors.grey[400]!,
+                                                child: Text(
+                                                  rowTitles[i],
+                                                  style: TextStyle(
+                                                    color: Colors.grey[500] ??
+                                                        Colors.grey,
                                                     fontWeight: FontWeight.w800,
-                                                    fontSize: 10),
-                                              )),
+                                                    fontSize: 9,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                             const SizedBox(
                                               height: 1.6,
@@ -291,14 +302,28 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                             ),
                           ),
                           Expanded(
-                            child: Scrollbar(
+                            child: RawScrollbar(
                               controller: widget.mainVerticalController,
                               thumbVisibility: true,
+                              thumbColor: Colors.deepOrange.withOpacity(0.6),
+                              interactive: true,
+                              radius: const Radius.circular(8),
+                              thickness: 3,
+                              trackVisibility: true,
+                              trackColor: Colors.deepOrange.withOpacity(0.1),
                               child: SingleChildScrollView(
                                 controller: widget.mainVerticalController,
-                                child: Scrollbar(
+                                child: RawScrollbar(
                                   controller: widget.mainHorizontalController,
                                   thumbVisibility: true,
+                                  thumbColor:
+                                      Colors.deepOrange.withOpacity(0.6),
+                                  interactive: true,
+                                  radius: const Radius.circular(8),
+                                  thickness: 3,
+                                  trackVisibility: true,
+                                  trackColor:
+                                      Colors.deepOrange.withOpacity(0.1),
                                   child: SingleChildScrollView(
                                     controller: widget.mainHorizontalController,
                                     scrollDirection: Axis.horizontal,
@@ -463,7 +488,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                     width: widget
                                                                         .cellWidth,
                                                                     padding: const EdgeInsets
-                                                                            .symmetric(
+                                                                        .symmetric(
                                                                         horizontal:
                                                                             4,
                                                                         vertical:
@@ -551,7 +576,11 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                                         deleteOnPressed: () {
                                                                                           setState(() {
                                                                                             EventModel eventModel = widget.eventList.elementAt(widget.indexList.indexOf(j.toString() + i.toString()));
-                                                                                            widget.eventList.removeAt(widget.indexList.indexOf(j.toString() + i.toString()));
+                                                                                            widget.eventList.removeAt(
+                                                                                              widget.indexList.indexOf(
+                                                                                                j.toString() + i.toString(),
+                                                                                              ),
+                                                                                            );
 
                                                                                             if (widget.eventAlert.deleteOnPressed != null) {
                                                                                               widget.eventAlert.deleteOnPressed!(eventModel);
@@ -562,11 +591,21 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                                         updateOnPressed: () {
                                                                                           if (widget.formKey.currentState!.validate()) {
                                                                                             setState(() {
-                                                                                              widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].color = widget.eventAlert.initialEventColor;
-                                                                                              widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].title = widget.eventAlert.alertTextController.text;
+                                                                                              widget
+                                                                                                  .eventList[widget.indexList.indexOf(
+                                                                                                j.toString() + i.toString(),
+                                                                                              )]
+                                                                                                  .color = widget.eventAlert.initialEventColor;
+                                                                                              widget
+                                                                                                  .eventList[widget.indexList.indexOf(
+                                                                                                j.toString() + i.toString(),
+                                                                                              )]
+                                                                                                  .title = widget.eventAlert.alertTextController.text;
 
                                                                                               if (widget.eventAlert.updateOnPressed != null) {
-                                                                                                widget.eventAlert.updateOnPressed!(widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())]);
+                                                                                                widget.eventAlert.updateOnPressed!(widget.eventList[widget.indexList.indexOf(
+                                                                                                  j.toString() + i.toString(),
+                                                                                                )]);
                                                                                               }
                                                                                             });
 
@@ -581,17 +620,33 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                                                                                 Container(
                                                                               decoration: BoxDecoration(
                                                                                 borderRadius: BorderRadius.circular(6),
-                                                                                color: widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].color ?? Colors.teal,
+                                                                                color: widget
+                                                                                        .eventList[widget.indexList.indexOf(
+                                                                                      j.toString() + i.toString(),
+                                                                                    )]
+                                                                                        .color ??
+                                                                                    Colors.teal,
                                                                               ),
                                                                               alignment: Alignment.center,
                                                                               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
                                                                               child: Tooltip(
                                                                                 key: UniqueKey(),
-                                                                                message: widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].title!,
-                                                                                decoration: BoxDecoration(color: Colors.black.withOpacity(0.7), borderRadius: BorderRadius.circular(14)),
+                                                                                message: widget
+                                                                                    .eventList[widget.indexList.indexOf(
+                                                                                  j.toString() + i.toString(),
+                                                                                )]
+                                                                                    .title!,
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Colors.black.withOpacity(0.7),
+                                                                                  borderRadius: BorderRadius.circular(14),
+                                                                                ),
                                                                                 textStyle: const TextStyle(color: Colors.white, fontSize: 10),
                                                                                 child: Text(
-                                                                                  widget.eventList[widget.indexList.indexOf(j.toString() + i.toString())].title!,
+                                                                                  widget
+                                                                                      .eventList[widget.indexList.indexOf(
+                                                                                    j.toString() + i.toString(),
+                                                                                  )]
+                                                                                      .title!,
                                                                                   style: widget.eventTitleStyle ??
                                                                                       const TextStyle(
                                                                                         color: Colors.white,

@@ -17,3 +17,7 @@
 ## 0.0.5
 
 * optimization
+
+## 0.0.6
+
+* UI design updates & fixed format issues

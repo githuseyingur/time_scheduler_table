@@ -52,11 +52,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        useMaterial3: false,
       ),
       home: TimeSchedulerTable(
-        cellHeight: 64,
+        cellHeight: 72,
         cellWidth: 72,
         columnTitles: const [
           "Mon",
