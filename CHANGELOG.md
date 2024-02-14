@@ -18,6 +18,6 @@
 
 * optimization
 
-## 0.0.6
+## 1.0.0
 
-* UI design updates & fixed format issues
+* Stable version - UI design updates & fixed issues
