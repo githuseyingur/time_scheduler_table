@@ -1,8 +1,8 @@
-A time table for Android & IOS where you can create events by clicking on cells, edit (update) and delete the events you have created. You can assign colours to events and if the name of the event is too long, you can see the full name and description by long pressing on the event.
+A time table for Android & IOS where you can create events by clicking on cells, edit (update) and delete the events you have created. You can assign colors to events and if the name of the event is too long, you can see the full name and description by long pressing on the event.
 
 ## Features
 
-#### GIFS
+#### GIF
 <img src="https://github.com/user-attachments/assets/5b185280-1cd8-4cf2-af45-fdaa0b8d8e0b"  width="280" height ="580">
 
 #### SCREENSHOTS
