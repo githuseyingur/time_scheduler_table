@@ -21,3 +21,7 @@
 ## 1.0.0
 
 * Stable version - fixed issues & added new features (about scrollbars).
+
+## 1.0.1
+
+* Fixed hasSize and other related issues to improve package stability and performance. Minor improvements to documentation for clearer usage instructions. Package has been simplified.

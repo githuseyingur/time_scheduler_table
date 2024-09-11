@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:time_scheduler_table/src/model/event_model.dart';
+import 'package:time_scheduler_table/src/model/event.dart';
 
 class EventAlert {
-  /// [alertTextController] is text controller of TextFormField inside the alert.
-  TextEditingController alertTextController;
-
   /// [addAlertTitle] is title for add alert.
   String? addAlertTitle;
 
@@ -16,9 +13,6 @@ class EventAlert {
 
   /// [textFieldEmptyValidateMessage] is message shown when the form is empty.
   String? textFieldEmptyValidateMessage;
-
-  /// [borderRadius] is border radius of alert.
-  BorderRadiusGeometry? borderRadius;
 
   /// [initialEventColor] is initial color of event. Whatever color is assigned to this variable is selected inside the alert.
   Color initialEventColor = Colors.orange;
@@ -33,24 +27,22 @@ class EventAlert {
   String? updateButtonTitle;
 
   /// [addOnPressed] is the function that shows the actions to be performed after adding the event by clicking the add button.
-  Function(EventModel event)? addOnPressed;
+  Function(Event event)? addOnPressed;
 
   /// [deleteOnPressed] is the function that shows the actions to be performed after deleting the event by clicking the delete button.
-  Function(EventModel event)? deleteOnPressed;
+  Function(Event event)? deleteOnPressed;
 
   /// [updateOnPressed] is the function that shows the actions to be performed after updating the event by clicking the update button.
-  Function(EventModel event)? updateOnPressed;
+  Function(Event event)? updateOnPressed;
 
   EventAlert(
-      {required this.alertTextController,
-      this.addAlertTitle,
+      {this.addAlertTitle,
       this.editAlertTitle,
       this.hintText,
       this.addButtonTitle,
       this.deleteButtonTitle,
       this.updateButtonTitle,
       this.textFieldEmptyValidateMessage,
-      this.borderRadius,
       this.addOnPressed,
       this.deleteOnPressed,
       this.updateOnPressed});

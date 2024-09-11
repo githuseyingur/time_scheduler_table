@@ -47,6 +47,8 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: widget.borderRadius ??
             const BorderRadius.all(Radius.circular(32.0)),
@@ -163,7 +165,10 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                             child: Text(
                               widget.addButtonTitle ?? "ADD",
                               style: const TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w600),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
                             )),
                       ),
                     )
@@ -188,8 +193,10 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                                 child: Text(
                                   widget.deleteButtonTitle ?? "DELETE",
                                   style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
                                 )),
                           ),
                           SizedBox(
@@ -207,8 +214,10 @@ class _SchedulerAlertState extends State<SchedulerAlert> {
                                 child: Text(
                                   widget.updateButtonTitle ?? "UPDATE",
                                   style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
                                 )),
                           ),
                         ],

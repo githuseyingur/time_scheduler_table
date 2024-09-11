@@ -7,110 +7,107 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
         overlays: [SystemUiOverlay.bottom]);
-
-    TextEditingController textController = TextEditingController();
-
-    List<EventModel> eventList = [
-      EventModel(
-        title: "Math",
-        columnIndex:
-            0, // columnIndex is columnTitle's index (Monday : 0 or Day 1 : 0)
-        rowIndex: 2, // rowIndex is rowTitle's index (08:00 : 0 or Time 1 : 0)
-        color: Colors.orange,
-      ),
-      EventModel(
-        title: "History",
-        columnIndex: 1,
-        rowIndex: 5,
-        color: Colors.pink,
-      ),
-      EventModel(
-        title: "Guitar & Piano Course",
-        columnIndex: 4,
-        rowIndex: 8,
-        color: Colors.green,
-      ),
-      EventModel(
-        title: "Meeting",
-        columnIndex: 3,
-        rowIndex: 1,
-        color: Colors.deepPurple,
-      ),
-      EventModel(
-        title: "Guitar and Piano Course",
-        columnIndex: 2,
-        rowIndex: 9,
-        color: Colors.blue,
-      )
-    ];
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        useMaterial3: false,
-      ),
-      home: TimeSchedulerTable(
-        cellHeight: 72,
-        cellWidth: 72,
-        columnTitles: const [
-          "Mon",
-          "Tue",
-          "Wed",
-          "Thur",
-          "Fri",
-          "Sat",
-          "Sun"
-        ], // columnTitles is growable : you can add as much as you want
-        // columnTitles: const ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],
-        // currentColumnTitleIndex: 2,      --> if currentColumnTitleIndex is 2 then selected day is 3.
-        currentColumnTitleIndex: DateTime.now().weekday - 1,
-        rowTitles: const [
-          '08:00 - 09:00',
-          '09:00 - 10:00',
-          '10:00 - 11:00',
-          '11:00 - 12:00',
-          '12:00 - 13:00',
-          '13:00 - 14:00',
-          '14:00 - 15:00',
-          '15:00 - 16:00',
-          '16:00 - 17:00',
-          '17:00 - 18:00',
-          '18:00 - 19:00',
-          '19:00 - 20:00',
-          '20:00 - 21:00',
-        ],
-        // You can assign any value to rowTitles. For Example : ['1','2','3']
-        title: "Event Schedule",
-        titleStyle: const TextStyle(
-            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
-        eventTitleStyle: const TextStyle(color: Colors.white, fontSize: 8),
-        isBack: false, // back button
-        eventList: eventList,
-        scrollColor: Colors.deepOrange.withOpacity(0.7),
-        isScrollTrackingVisible: true,
-        eventAlert: EventAlert(
-          alertTextController: textController,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(12.0),
+      home: HomeView(),
+    );
+  }
+}
+
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  List<Event> eventList = [
+    Event(
+      title: "Flutter Project",
+      columnIndex: 0, //columnLabel's index (Monday)
+      rowIndex: 3, //rowLabel's index (08:00)
+      color: Colors.orange,
+    ),
+    Event(
+      title: "Deep Learning Course",
+      columnIndex: 1,
+      rowIndex: 6,
+      color: Colors.pink,
+    ),
+    Event(
+      title: "Violin & Piano Course",
+      columnIndex: 4,
+      rowIndex: 8,
+      color: Colors.green,
+    ),
+    Event(
+      title: "Sport",
+      columnIndex: 3,
+      rowIndex: 1,
+      color: Colors.deepPurpleAccent,
+    ),
+    Event(
+      title: "Algorithm and Data Structures",
+      columnIndex: 2,
+      rowIndex: 11,
+      color: Colors.blue,
+    )
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.grey[100],
+      body: Column(
+        children: [
+          // title, back button, etc. can be added here
+          TimeSchedulerTable(
+            eventList: eventList,
+            cellHeight: 52,
+            cellWidth: 64,
+            currentColumnTitleIndex: 3,
+            // column & row labels can be added
+            eventAlert: EventAlert(
+              addOnPressed: (event) {
+                showSnackBar(context, '${event.title} added', event.color!);
+              },
+              deleteOnPressed: (event) {
+                showSnackBar(context, '${event.title} deleted', event.color!);
+              },
+              updateOnPressed: (event) {
+                showSnackBar(context, '${event.title} updated', event.color!);
+              },
+            ),
           ),
-          addAlertTitle: "Add Event",
-          editAlertTitle: "Edit",
-          addButtonTitle: "ADD",
-          deleteButtonTitle: "DELETE",
-          updateButtonTitle: "UPDATE",
-          hintText: "Event Name",
-          textFieldEmptyValidateMessage: "Cannot be empty!",
-          addOnPressed: (event) {}, // when an event added to your list
-          updateOnPressed: (event) {}, // when an event updated from your list
-          deleteOnPressed: (event) {}, // when an event deleted from your list
-        ),
+        ],
       ),
     );
+  }
+
+  void showSnackBar(BuildContext context, String message, Color color) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Row(
+        children: [
+          Text(
+            message,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      ),
+      showCloseIcon: true,
+      closeIconColor: Colors.white,
+      backgroundColor: color,
+    ));
   }
 }

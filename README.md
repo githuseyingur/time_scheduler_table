@@ -1,4 +1,4 @@
-A time scheduler for Android & IOS where you can create events by clicking on cells, edit (update) and delete the events you have created. You can assign colours to events and if the name of the event is too long, you can see the full name and description by long pressing on the event.
+A time table for Android & IOS where you can create events by clicking on cells, edit (update) and delete the events you have created. You can assign colours to events and if the name of the event is too long, you can see the full name and description by long pressing on the event.
 
 ## Features
 
@@ -20,44 +20,41 @@ flutter pub add time_scheduler_table
 ```
 
 ## Usage
-Define a TextEditingController for event add and event update alerts:
+
+Create a list of event models with title, column index, row index and color. <br> The row and column index, specify the index of the elements in the column and row labels (Mon, Tue or 08:00, 09:00). They starts from 0:
 ```dart
-TextEditingController textController = TextEditingController();
-```
-Create a list of event models with title, column index, row index and color. <br> The row and column index, specify the index of the elements in the column and row titles (Mon, Tue or 08:00, 09:00). They starts from 0:
-```dart
-    List<EventModel> eventList = [
-      EventModel(
-        title: "Math",
-        columnIndex: 0, // columnIndex is columnTitle's index (Monday : 0 or Day 1 : 0)
-        rowIndex: 2, // rowIndex is rowTitle's index (08:00 : 0 or Time 1 : 0)
-        color: Colors.orange,
-      ),
-      EventModel(
-        title: "History",
-        columnIndex: 1,
-        rowIndex: 5,
-        color: Colors.pink,
-      ),
-      EventModel(
-        title: "Guitar & Piano Course",
-        columnIndex: 4,
-        rowIndex: 8,
-        color: Colors.green,
-      ),
-      EventModel(
-        title: "Meeting",
-        columnIndex: 3,
-        rowIndex: 1,
-        color: Colors.deepPurple,
-      ),
-      EventModel(
-        title: "Guitar and Piano Course",
-        columnIndex: 2,
-        rowIndex: 9,
-        color: Colors.blue,
-      )
-    ];
+     List<Event> eventList = [
+    Event(
+      title: "Flutter Project",
+      columnIndex: 0, //columnLabel's index (Monday)
+      rowIndex: 3, //rowLabel's index (08:00)
+      color: Colors.orange,
+    ),
+    Event(
+      title: "Deep Learning Course",
+      columnIndex: 1,
+      rowIndex: 6,
+      color: Colors.pink,
+    ),
+    Event(
+      title: "Violin & Piano Course",
+      columnIndex: 4,
+      rowIndex: 8,
+      color: Colors.green,
+    ),
+    Event(
+      title: "Sport",
+      columnIndex: 3,
+      rowIndex: 1,
+      color: Colors.deepPurpleAccent,
+    ),
+    Event(
+      title: "Algorithm and Data Structures",
+      columnIndex: 2,
+      rowIndex: 11,
+      color: Colors.blue,
+    )
+  ];
 ```
 Create your Time Scheduler Widget: <br>
 
@@ -65,7 +62,7 @@ Create your Time Scheduler Widget: <br>
 TimeSchedulerTable(
         cellHeight: 64,
         cellWidth: 72,
-        columnTitles: const [ // You can assign any value to columnTitles. For Example : ['Column 1','Column 2','Column 3', ...]
+        columnLabels: const [ // You can assign any value to columnLabels. For Example : ['Column 1','Column 2','Column 3', ...]
           "Mon",
           "Tue",
           "Wed",
@@ -75,7 +72,7 @@ TimeSchedulerTable(
           "Sun"
         ],
         currentColumnTitleIndex: DateTime.now().weekday - 1,
-        rowTitles: const [ // You can assign any value to rowTitles. For Example : ['Row 1','Row 2','Row 3', ...]
+        rowLabels: const [ // You can assign any value to rowLabels. For Example : ['Row 1','Row 2','Row 3', ...]
           '08:00 - 09:00',
           '09:00 - 10:00',
           '10:00 - 11:00',
@@ -90,17 +87,8 @@ TimeSchedulerTable(
           '19:00 - 20:00',
           '20:00 - 21:00',
         ],
-        title: "Event Schedule",
-        titleStyle: const TextStyle(
-            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
-        eventTitleStyle: const TextStyle(color: Colors.white, fontSize: 8),
-        isBack: false, // back button
         eventList: eventList,
         eventAlert: EventAlert(
-          alertTextController: textController,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(12.0),
-          ),
           addAlertTitle: "Add Event",
           editAlertTitle: "Edit",
           addButtonTitle: "ADD",
@@ -120,18 +108,18 @@ TimeSchedulerTable(
         ),
       ),
 ```
-`columnTitles` contain days or values that you define. It is not required. <br> The default value is : 
+`columnLabels` contain days or values that you define. It is not required. <br> The default value is : 
 ```dart
 ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
 ```
 You can define it as you want. For Example: <br>
 ```dart
-columnTitles: const ["Column 1", "Column 2", "Column 3", ...],
+columnLabels: const ["Column 1", "Column 2", "Column 3", ...],
 currentColumnTitleIndex: 2,
 ```
 If you define like this, selected column is 3 if `currentColumnTitleIndex` is 2. 
 
-`rowTitles` contain times or values that you define. It is not required. <br> The default value is : 
+`rowLabels` contain times or values that you define. It is not required. <br> The default value is : 
 ```dart
 [
   '06:00 - 07:00',
@@ -156,7 +144,7 @@ If you define like this, selected column is 3 if `currentColumnTitleIndex` is 2.
 ```
 You can define it as you want. For Example: <br>
 ```dart
-rowTitles: const ["Row 1", "Row 2", "Row 3", ...],
+rowLabels: const ["Row 1", "Row 2", "Row 3", ...],
 ```
 <br> <br> <br> <br>
 

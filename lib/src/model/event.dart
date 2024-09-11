@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class EventModel {
+class Event {
   /// [title] is title of event.
   String? title;
 
@@ -16,7 +16,7 @@ class EventModel {
   /// [rowIndex] indicates in which row index the Event is located.
   int rowIndex;
 
-  EventModel({
+  Event({
     this.title,
     this.time,
     this.color,

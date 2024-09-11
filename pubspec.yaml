@@ -1,6 +1,6 @@
 name: time_scheduler_table
-description: A scheduler with the ability to add, delete and update events by clicking on cells.
-version: 1.0.0
+description: A time table with the ability to add, delete and update events by clicking on cells.
+version: 1.0.1
 homepage: https://github.com/githuseyingur/time_scheduler_table.git
 
 environment:
