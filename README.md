@@ -3,14 +3,12 @@ A time table for Android & IOS where you can create events by clicking on cells,
 ## Features
 
 #### GIFS
-<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/27177563-81d0-49ca-9765-87b52c39a8bd"  width="280" height ="580">
-<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/c909575d-4292-45e3-95e0-ecf59cd92092"  width="280" height ="580">
+<img src="https://github.com/user-attachments/assets/5b185280-1cd8-4cf2-af45-fdaa0b8d8e0b"  width="280" height ="580">
 
 #### SCREENSHOTS
-<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/b3c72c90-512e-40b5-a98a-cb5cebc5e768"  width="280">
-<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/ba9214b2-9efc-477c-8e79-2a9beea7e1f6"  width="280">
-<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/8179e42e-a57e-42f8-aed2-693998af9692"  width="280">
-<img src="https://github.com/githuseyingur/time_scheduler_table/assets/120099096/b56ee7c6-bfb9-4b25-9097-08a7239edc7d"  width="280">
+<img src="https://github.com/user-attachments/assets/7f8ba698-079a-4b02-980d-40f73d79b715"  width="280">
+<img src="https://github.com/user-attachments/assets/53117e44-7a2f-4831-bc36-84c4d930ef63"  width="280">
+<img src="https://github.com/user-attachments/assets/d263b526-e428-4c4d-a4ad-d192995d735a"  width="280">
 
 
 ## Getting started
@@ -21,7 +19,7 @@ flutter pub add time_scheduler_table
 
 ## Usage
 
-Create a list of event models with title, column index, row index and color. <br> The row and column index, specify the index of the elements in the column and row labels (Mon, Tue or 08:00, 09:00). They starts from 0:
+Create a list of event with title, column index, row index and color. <br> The row and column index, specify the index of the elements in the column and row labels (Mon, Tue or 08:00, 09:00). They starts from 0:
 ```dart
      List<Event> eventList = [
     Event(
@@ -60,8 +58,8 @@ Create your Time Scheduler Widget: <br>
 
 ```dart
 TimeSchedulerTable(
-        cellHeight: 64,
-        cellWidth: 72,
+        cellHeight: 52,
+        cellWidth: 64,
         columnLabels: const [ // You can assign any value to columnLabels. For Example : ['Column 1','Column 2','Column 3', ...]
           "Mon",
           "Tue",
