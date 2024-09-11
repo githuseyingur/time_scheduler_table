@@ -2,10 +2,7 @@ A time table for Android & IOS where you can create events by clicking on cells,
 
 ## Features
 
-#### GIF
 <img src="https://github.com/user-attachments/assets/5b185280-1cd8-4cf2-af45-fdaa0b8d8e0b"  width="280" height ="580">
-
-#### SCREENSHOTS
 <img src="https://github.com/user-attachments/assets/7f8ba698-079a-4b02-980d-40f73d79b715"  width="280">
 <img src="https://github.com/user-attachments/assets/53117e44-7a2f-4831-bc36-84c4d930ef63"  width="280">
 <img src="https://github.com/user-attachments/assets/d263b526-e428-4c4d-a4ad-d192995d735a"  width="280">
