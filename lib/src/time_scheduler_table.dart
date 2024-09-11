@@ -60,7 +60,7 @@ class TimeSchedulerTable extends StatefulWidget {
   /// [EventAlert] is the class containing all the properties of the alert.
   final EventAlert eventAlert;
 
-  /// [scrollColor] is color of horizontal and vertical scrolls. Default value is Colors.deepOrange.withOpacity(0.6)
+  /// [scrollColor] is color of horizontal and vertical scrolls. Default value is Colors.deepOrange.withOpacity(0.5)
   final Color? scrollColor;
 
   /// [scrollTrackingColor] is tracking color of the scroll. Default value is Colors.deepOrange.withOpacity(0.1)
@@ -245,7 +245,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                           controller: widget.mainVerticalController,
                           thumbVisibility: true,
                           thumbColor: widget.scrollColor ??
-                              Colors.deepOrange.withOpacity(0.6),
+                              Colors.deepOrange.withOpacity(0.5),
                           interactive: true,
                           radius: const Radius.circular(8),
                           thickness: 3,
@@ -259,7 +259,7 @@ class _TimeSchedulerTableState extends State<TimeSchedulerTable> {
                               controller: widget.mainHorizontalController,
                               thumbVisibility: true,
                               thumbColor: widget.scrollColor ??
-                                  Colors.deepOrange.withOpacity(0.6),
+                                  Colors.deepOrange.withOpacity(0.5),
                               interactive: true,
                               radius: const Radius.circular(8),
                               thickness: 3,
