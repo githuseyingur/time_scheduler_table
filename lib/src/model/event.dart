@@ -7,7 +7,7 @@ class Event {
   /// [time] is time of event.
   String? time;
 
-  //// [color] is color of event.
+  /// [color] is color of event.
   Color? color;
 
   /// [columnIndex] indicates in which column index the Event is located.
